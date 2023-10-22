@@ -9,7 +9,7 @@ namespace Factory.Models
     public DbSet<EngineerMachine> EngineerMachines { get; set; }
     public FactoryContext(DbContextOptions options) : base(options)
     {
-      
+
     }
   }
 }
