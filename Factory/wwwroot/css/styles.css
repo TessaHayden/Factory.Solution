@@ -1,4 +1,17 @@
+body{
+  text-align: center;
+  margin: 2%;
+}
+ul {
+  list-style-position: inside;
+  list-style-type:square;
+}
+.footer-link{
+  display: inline;
+  margin-left: 2%;
+}
 div#footer {
+  text-align: start;
   position: fixed;
   bottom: 0px;
   left: 0px;
