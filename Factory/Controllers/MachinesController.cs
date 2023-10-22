@@ -32,7 +32,7 @@ namespace Factory.Controllers
       if(!ModelState.IsValid)
       {
         ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
-        return View(machine)
+        return View(machine);
       }
       _db.Machines.Add(machine);
       _db.SaveChanges();
@@ -41,8 +41,8 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
-                            .Include(mach => mach.JoinEntities)
-                            .ThenInclude(join => join.Engineer)
+                            .Include(join => join.Engineer)
+                            .ThenInclude(mach => mach.JoinEntities)
                             .FirstOrDefault(mach => mach.MachineId == id);
       return View(thisMachine);
     }

@@ -2,31 +2,43 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models
 @model Factory.Models.Engineer
+@using Factory.Models
 
 <h2>Engineer Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)<h3>
 
-        @if (@Model.JoinEntities.Count == 0)
+    @if (@Model.Machines.Count == 0)
+    {
+      <h3>No machines have been added to this engineer yet!</h3>
+    }
+    else
+    {
+      <h3>Machines:</h3>
+      <ul>
+        @foreach (Machine machine in Model.Machines)
         {
-          <p>This engineer does not have any licenses yet!</p>
-        }
-        else
-        {
-          <h4>This engineer is licensed to repair the following machines:</h4>
-          <ul>
-            @foreach (EngineerMachine join in Model.JoinEntities)
+          string tags = "";
+          @if (machine.JoinEntities.Count == 0)
+          {
+            tags = "This machine does not have any engineers.";
+          }
+          else
+          {
+            List<string> engineerList = new List<string>();
+            @foreach (EngineerMachine join in machine.JoinEntities)
             {
-              <li>Machine Model: @join.Machine.MachineName</li>
-              @using (Html.BeginForm("DeleteJoin", "Engineers"))
-              {
-                @Html.Hidden("joinId", @join.EngineerMachineId)
-                <input type="submit" value="Delete" />
-              }
+              engineerList.Add(join.Machine.MachineName);
             }
-          </ul>
+            tags = String.Join(",", engineerList);
+          }
+          <li>@machine.MachineName | Engineers: @tags</li>
         }
-        <p>@Html.ActionLink("Return Home", "Index", "Home")</p>
-        <p>@Html.ActionLink("Back to list", "Index")</p>
+      </ul>
+    }
+    <p>@Html.ActionLink("Back to engineers", "Index")</p>
+    <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+    <p>@Html.ActionLink("Add new machine", "Create", "Machines")</p>
+    <p>@Html.ActionLink("Back to list", "Index")</p>

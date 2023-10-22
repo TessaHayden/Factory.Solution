@@ -49,7 +49,6 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(model => model.EngineerId == id);
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineName");
       return View(thisEngineer);
     }
     [HttpPost]
@@ -59,11 +58,16 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    [HttpPost]
-    public ActionResult DeleteJoin(int joinId)
+    public ActionResult Delete(int id)
     {
-      EngineerMachine joinEntry = _db.EngineerMachines.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
-      _db.EngineerMachines.Remove(joinEntry);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
