@@ -3,7 +3,6 @@
 }
 
 @using Factory.Models;
-@model List<Factory.Models.Machine>;
 
 <h1>Machine</h1>
 
@@ -22,4 +21,6 @@ else
 }
 
 <p>@Html.ActionLink("Add a machine", "Create")</p>
+<p>@Html.ActionLink("Edit a machine", "Edit")</p>
+<p>@Html.ActionLink("Delete a Machine", "Delete")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
