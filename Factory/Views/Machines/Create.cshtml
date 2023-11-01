@@ -3,19 +3,20 @@
 }
 
 @model Factory.Models.Machine
+@using Factory.Models
 
 <p><strong>NOTE:</strong> You need to have at least one engineer before you can add a machine!</p>
 <p>Go to @Html.ActionLink("this page", "Create", "Engineers") to create an engineer profile.</p>
 
 <h4>Add a new machine</h4>
-<p>@Html.ValidationMessageFor(model => model.EngineerId, "", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(model => model.MachineId, "", new {@class = "text-danger", @style = "font-weight: 600;"})</p>
 
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.MachineName)
   @Html.TextBoxFor(model => model.MachineName)
 
-  @Html.LabelFor(model => model.Engineer)
+  @Html.LabelFor(model => model.Engineers)
   @Html.DropDownList("EngineerId")
 
   <input type="submit" value="Add new machine" class="btn btn-primary" />

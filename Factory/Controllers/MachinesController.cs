@@ -17,7 +17,8 @@ namespace Factory.Controllers
         public ActionResult Index()
     {
       List<Machine> model = _db.Machines
-                            .Include(machine => machine.Engineer)
+                            .Include(machine => machine.JoinEntities)
+                            .ThenInclude(join => join.Engineer)
                             .ToList();
       return View(model);
     }

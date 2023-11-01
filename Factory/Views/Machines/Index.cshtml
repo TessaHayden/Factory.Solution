@@ -15,12 +15,11 @@ else
   <ul>
   @foreach (Machine machine in Model)
     {
-      <li>@Html.ActionLink($"{machine.MachineName}", "Details", new { id = machine.MachineId }) | @machine.Engineer.EngineerName</li>
+      <li>@Html.ActionLink($"{machine.MachineName}", "Details", new { id = machine.MachineId })</li>
     }
   </ul>
 }
 
 <p>@Html.ActionLink("Add a machine", "Create")</p>
 <p>@Html.ActionLink("Edit a machine", "Edit")</p>
-<p>@Html.ActionLink("Delete a Machine", "Delete")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
