@@ -10,7 +10,7 @@
 <h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)<h3>
 
 
-    @if (@Model.Machines.Count == 0)
+    @if (@Model.JoinEntities.Count == 0)
     {
       <p>No machines have been added to this engineer yet!</p>
     }
@@ -29,7 +29,7 @@
         } 
       </ul>
     }
-    <p>@Html.ActionLink("Add machine", "AddMachine")</p>
+    <p>@Html.ActionLink("Add machine", "AddMachine", new {id = Model.EngineerId})</p>
     <p>@Html.ActionLink("Back to engineers", "Index")</p>
     <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
     <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
